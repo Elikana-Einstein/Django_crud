@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">Task List</h1>
+        
+        <!-- Add New Task Button -->
+        <div class="text-right mb-6">
+            <a href="{% url 'task_create' %}">
+
+            <button  class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+                + Add New Task
+            </button>
+        </a>
+        </div>
+        {% if tasks %}
+        <!-- Task Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Task Card -->
+             {% for task in tasks %}
+            <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-semibold text-slate-800">{{ task.title }}</h3>
+                    <span class="bg-green-100 text-green-800 text-sm px-2 py-1 rounded-full">{{ task.completed }}</span>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600 mb-4">{{ task.description }}</p>
+                </div>
+                
+                <div class="flex justify-between text-sm text-slate-600 mb-4">
+                    <span>Created: {{ task.created_at }}</span>
+                    <span>Due: {{ task.duedate }}</span>
+                </div>
+
+                <div class="mb-4">
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>Progress</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-blue-500 rounded-full h-2 w-[60%]"></div>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+
+                    <button class="bg-green-300 hover:bg-green-700 p-3 rounded-md">Update</button>
+                    <button class="bg-red-300 hover:bg-red-700 p-3 rounded-md">Delete</button>
+                </div>
+            </div>
+
+           {% endfor %}
+
+            <!-- Add more task cards as needed -->
+        </div>
+        {% else %}
+        <div class="bg-white rounded-xl shadow-md p-6 text-center">
+            <p class="text-gray-600">No tasks available. Please add a new task.</p> 
+        </div>
+        {% endif %}
+    </div>
+    {% endblock %}
