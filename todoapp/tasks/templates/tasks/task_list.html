@@ -28,7 +28,7 @@
                 
                 <div class="flex justify-between text-sm text-slate-600 mb-4">
                     <span>Created: {{ task.created_at }}</span>
-                    <span>Due: {{ task.duedate }}</span>
+                    <span>Due: {{ task.due_date }}</span>
                 </div>
 
                 <div class="mb-4">
@@ -39,12 +39,17 @@
                     <div class="w-full bg-gray-200 rounded-full h-2">
                         <div class="bg-blue-500 rounded-full h-2 w-[60%]"></div>
                     </div>
+                    <p>{{ task.id }}</p>
+                    
                 </div>
                 <div class="flex justify-between">
-
+                <a href="{% url 'update_task' task_id=task.id %}">
                     <button class="bg-green-300 hover:bg-green-700 p-3 rounded-md">Update</button>
+                </a>
+                <a href="{% url 'delete_task' task_id=task.id %}">
                     <button class="bg-red-300 hover:bg-red-700 p-3 rounded-md">Delete</button>
                 </div>
+            </a>
             </div>
 
            {% endfor %}
