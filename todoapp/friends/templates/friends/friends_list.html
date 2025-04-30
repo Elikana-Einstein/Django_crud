@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for friend in users %}
+<a href="{% url 'friends:f_profile' username=friend.username %}">
+<div class="max-w-2xl mx-auto mt-10 bg-white rounded-lg shadow-lg p-8">
+  <div class="flex items-center gap-8">
+    <!-- Profile Picture -->
+    <div class="flex-shrink-0">
+      <img 
+        src="https://via.placeholder.com/128" 
+        alt="Profile picture" 
+        class="w-32 h-32 rounded-full border-4 border-blue-100 object-cover hover:border-blue-200 transition-colors"
+      >
+    </div>
+
+    <!-- Profile Info -->
+    <div class="flex-grow">
+      <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ friend.username }}</h1>
+      <p class="text-gray-600 mb-4">{{ friend.profile.bio }}</p>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-4">
+        <form action="#">
+          <button 
+            type="submit"
+            class="px-6 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400"
+          >
+            Hide
+          </button>
+        </form>
+
+        <form action="#">
+          <button 
+            type="submit"
+            class="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            Add Friend
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</a>
+{% endfor %}
+{% endblock %}

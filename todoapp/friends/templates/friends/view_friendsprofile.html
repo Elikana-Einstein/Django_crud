@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block content %}
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<body class="bg-gray-100">
+    <!-- Cover Photo -->
+    <div class="h-64 bg-blue-200 relative">
+        <div class="absolute -bottom-24 left-16">
+            <img src="https://placehold.co/150x150" alt="Profile" class="rounded-full border-4 border-white">
+        </div>
+    </div>
+
+    <!-- Profile Info -->
+    <div class="container mx-auto max-w-5xl px-4 pt-28">
+        <div class="flex justify-between items-start">
+            <div>
+                <h1 class="text-3xl font-bold">{{ profile.user.username }}</h1>
+                <p class="text-gray-600">1,234 friends</p>
+            </div>
+            <div class="flex gap-2">
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold">
+                    Add  Friend
+                </button>
+               
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="flex mt-4 border-b">
+            <a href="#" class="px-4 py-3 font-semibold text-blue-600 border-b-2 border-blue-600">Posts</a>
+            <a href="#" class="px-4 py-3 hover:bg-gray-100 text-gray-600">About</a>
+            <a href="#" class="px-4 py-3 hover:bg-gray-100 text-gray-600">Friends</a>
+            <a href="#" class="px-4 py-3 hover:bg-gray-100 text-gray-600">Photos</a>
+            <a href="#" class="px-4 py-3 hover:bg-gray-100 text-gray-600">Videos</a>
+            <a href="#" class="px-4 py-3 hover:bg-gray-100 text-gray-600">More</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="grid grid-cols-4 gap-4 mt-4">
+            <!-- Left Column -->
+            <div class="col-span-1 space-y-4">
+                <!-- Intro Card -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h2 class="font-bold text-lg mb-2">Intro</h2>
+                    <p class="text-gray-600">{{ profile.bio }}</p>
+                    <div class="mt-2 space-y-1">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>{{ profile.location }}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>{{ profile.email }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photos Card -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="font-bold text-lg">Photos</h2>
+                        <a href="#" class="text-blue-600">See All</a>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1">
+                        <img src="https://placehold.co/200x200" alt="Photo" class="w-full h-24 object-cover">
+                        <img src="https://placehold.co/200x200" alt="Photo" class="w-full h-24 object-cover">
+                        <img src="https://placehold.co/200x200" alt="Photo" class="w-full h-24 object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-span-3 space-y-4">
+                <!-- Create Post -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex gap-2">
+                        <img src="https://placehold.co/40x40" alt="Profile" class="rounded-full">
+                        <input type="text" placeholder="What's on your mind, John?" class="bg-gray-100 rounded-full px-4 py-2 w-full">
+                    </div>
+                </div>
+
+                <!-- Friends Card -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="font-bold text-lg">Friends</h2>
+                        <a href="#" class="text-blue-600">See All</a>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="space-y-1">
+                            <img src="https://placehold.co/200x200" alt="Friend" class="w-full h-40 object-cover rounded-lg">
+                            <p class="font-semibold">Jane Smith</p>
+                            <p class="text-sm text-gray-500">34 mutual friends</p>
+                        </div>
+                        <div class="space-y-1">
+                            <img src="https://placehold.co/200x200" alt="Friend" class="w-full h-40 object-cover rounded-lg">
+                            <p class="font-semibold">Mike Johnson</p>
+                            <p class="text-sm text-gray-500">12 mutual friends</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

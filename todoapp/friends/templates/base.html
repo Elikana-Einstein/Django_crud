@@ -35,7 +35,7 @@
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
-              <a href="{% url 'task_list' %}" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+              <a href="#" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
               <a href="#" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tasks</a>
               <a href="{% url 'friends:list_friends' %}" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Friends</a>
             </div>
@@ -45,9 +45,8 @@
         <div class="hidden md:block">
           <div class="ml-4 flex items-center">
             <a href="{% url 'friends:my_profile' %}">
-              <p class="cursor-pointer">{{ user.username }}</p>
-          </a>
-          
+            <p class="cursor-pointer">{{ user.username }}</p>
+        </a>
             <form method="post" action="{% url 'logout' %}">
               {% csrf_token %}
               <button type="submit" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Logout</button>
