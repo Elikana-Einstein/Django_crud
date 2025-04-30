@@ -41,11 +41,23 @@
             </div>
           </div>
         </div>
+        {% if user.is_authenticated %}
         <div class="hidden md:block">
           <div class="ml-4 flex items-center">
-            <a href="#" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Logout</a>
+            <p class="">{{ user.username }}</p>
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Logout</button>
+          </form>
           </div>
         </div>
+        {% else %}
+        <div class="hidden md:block">
+          <div class="ml-4 flex items-center">
+            <a href="#" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
+          </div>
+        </div>
+        {% endif %}
         <div class="-mr-2 flex md:hidden">
           <button id="mobile-menu-button" class="bg-blue-600 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
             <span class="sr-only">Open main menu</span>

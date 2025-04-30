@@ -39,7 +39,10 @@
                     <div class="w-full bg-gray-200 rounded-full h-2">
                         <div class="bg-blue-500 rounded-full h-2 w-[60%]"></div>
                     </div>
-                    <p>{{ task.id }}</p>
+                    <form action="{% url 'update_complete_task' task_id=task.id %}" method="post" class="mt-4">
+                        {% csrf_token %}
+                        <p></button>Completed:<input onchange="this.form.submit()" {% if task.completed %} checked {% endif %} type="checkbox"></p>
+                    </form>
                     
                 </div>
                 <div class="flex justify-between">

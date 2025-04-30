@@ -67,3 +67,11 @@ def delete_task(request, task_id):
     else:
          return render(request, 'tasks/task_delete.html', {'task': task})
    
+@login_required
+def complete_task(request, task_id):
+    task=get_object_or_404(Task,pk=task_id,user=request.user)
+    if request.method == 'POST':
+        task.completed = not task.completed
+        task.save()
+        return redirect('task_list')
+    
