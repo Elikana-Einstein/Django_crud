@@ -9,3 +9,8 @@ class ProfileForm(forms.ModelForm):
             'bio': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
             'profile_picture': forms.ClearableFileInput(attrs={'multiple': False}),
         }
+
+class friendRequestForm(forms.ModelForm):
+    class Meta:
+        model = FriendRequest
+        fields = ['sender', 'receiver', 'status']

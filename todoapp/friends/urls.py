@@ -6,4 +6,7 @@ urlpatterns = [
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('friends/', views.list_friends, name='list_friends'),
     path('myprofile/',views.view_your_profile, name='my_profile'),
+    path('addfriend/<str:user_name>',views.add_friend, name='add_friend'),
+    path('acceptfriend/<str:user_name>',views.accept_friend_request, name='accept_friend'),
+    path('rejectfriend/<str:user_name>',views.reject_friend_request, name='reject_friend'),
 ]
