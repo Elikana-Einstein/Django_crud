@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Profile,FriendRequest
 from .forms import ProfileForm,friendRequestForm
+from django.db.models import Q
 # Create your views here.
 @login_required
 def profile_view(request,username):
@@ -12,12 +13,24 @@ def profile_view(request,username):
 @login_required
 def view_your_profile(request):
     profile = get_object_or_404(Profile,user=request.user)
-    return render(request,'friends/profile.html',{'profile': profile, 'user': request.user})
+    friend_requests = FriendRequest.objects.filter(Q(sender=request.user) | Q(receiver=request.user))
+
+    # Get profiles of all involved users
+    profiles = [
+    req.sender.profile for req in friend_requests if req.sender != request.user
+    ] + [
+    req.receiver.profile for req in friend_requests if req.receiver != request.user
+    ]
+
+    # Remove duplicate profiles if needed
+    unique_profiles = list(set(profiles))
+   
+    return render(request,'friends/profile.html',{'profile': profile,'profiles':unique_profiles ,'user': request.user})
 
 @login_required
 def edit_profile(request):
     profile = get_object_or_404(Profile, user=request.user) 
-    print(profile.bio)
+
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():

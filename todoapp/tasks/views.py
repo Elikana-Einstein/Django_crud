@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.utils import timezone
 from .models import Task
+from django.db.models import Q
+from friends.models import FriendRequest
 from django.contrib.auth.decorators import login_required
 from .forms import Taskform,EditTaskForm
 
@@ -75,3 +77,21 @@ def complete_task(request, task_id):
         task.save()
         return redirect('task_list')
     
+
+@login_required
+def get_friends_task(request):
+    # Retrieve accepted friend requests where the logged-in user is involved
+    friend_requests = FriendRequest.objects.filter(
+        Q(sender=request.user) | Q(receiver=request.user), status='accepted'
+    )
+    
+    # Get the profiles of friends (excluding request.user)
+    friend_users = [
+        friend.sender if friend.receiver == request.user else friend.receiver
+        for friend in friend_requests
+    ]
+
+    # Retrieve tasks assigned to these friends
+    tasks = Task.objects.filter(user__in=friend_users)
+
+    return render(request, 'tasks/friends_task.html', {'tasks': tasks})

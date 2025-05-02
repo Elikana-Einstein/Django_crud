@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">Task List</h1>
+        
+        <!-- Add New Task Button -->
+        
+        {% if tasks %}
+        <!-- Task Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Task Card -->
+             {% for task in tasks %}
+            
+            <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                <div>
+                    <p>{{ task.user.username }}</p>
+                    <img class="w-10" src="{{ task.user.profile.profile_picture.url}}" alt="">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-semibold text-slate-800">{{ task.title }}</h3>
+                    <span class="bg-green-100 text-green-800 text-sm px-2 py-1 rounded-full">{{ task.completed }}</span>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600 mb-4">{{ task.description }}</p>
+                </div>
+                
+                <div class="flex justify-between text-sm text-slate-600 mb-4">
+                    <span>Created: {{ task.created_at }}</span>
+                    <span>Due: {{ task.due_date }}</span>
+                </div>
+
+                <div class="mb-4">
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>Progress</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-blue-500 rounded-full h-2 w-[60%]"></div>
+                    </div>
+                    
+                </div>
+                <div class="flex justify-between bg-gray-100 p-4 rounded-lg shadow-md">
+                    <!-- Left Section: Like & Unlike -->
+                    <div class="flex gap-4">
+                        <form action="">
+                            {% csrf_token %}
+                            <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Like</button>
+                        </form>
+                        <form action="">
+                            {% csrf_token %}
+                            <button class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition">Unlike</button>
+                        </form>
+                    </div>
+                
+                    <!-- Right Section: Share & Comment -->
+                    <div class="flex gap-4">
+                        <form action="">
+                            {% csrf_token %}
+                            <button class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">Share</button>
+                        </form>
+                        <form action="">
+                            {% csrf_token %}
+                            <button class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition">Comment</button>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        
+           {% endfor %}
+        </div>
+</div>
+            <!-- Add more task cards as needed -->
+       
+        {% else %}
+        <div class="bg-white rounded-xl shadow-md p-6 text-center">
+            <p class="text-gray-600">No tasks available. Please add a new task.</p> 
+        </div>
+        {% endif %}
+    </div>
+    {% endblock %}

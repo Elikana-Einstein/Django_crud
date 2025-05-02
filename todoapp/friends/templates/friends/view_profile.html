@@ -27,6 +27,7 @@
           id="cover_photo" 
           name="cover_photo" 
           class="hidden"
+          value="{{ profile.profile_picture }}"
           accept="image/*"
         >
         <label for="cover_photo" class="absolute inset-0 cursor-pointer"></label>
@@ -37,9 +38,9 @@
       <!-- Profile Picture Upload -->
       <div class="flex-shrink-0 relative group">
         <img 
-          src="{% if profile.profile_pic %}{{ profile.profile_pic.url }}{% else %}https://via.placeholder.com/128{% endif %}" 
-          alt="Profile picture" 
-          class="w-32 h-32 rounded-full border-4 border-blue-100 object-cover"
+          src="{{ profile.profile_picture.url }}" 
+          alt="Profile pictures" 
+          class="w-32 h-32 rounded-full border-4 border-blue-200 object-cover"
         >
         <div class="absolute inset-0 bg-black bg-opacity-40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,9 +51,11 @@
         <input 
           type="file" 
           id="profile_pic" 
-          name="profile_pic" 
+          name="profile_picture" 
           class="hidden"
           accept="image/*"
+          onchange="previewImage(event)"
+         
         >
         <label for="profile_pic" class="absolute inset-0 cursor-pointer"></label>
       </div>

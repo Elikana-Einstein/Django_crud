@@ -36,7 +36,7 @@
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
               <a href="{% url 'task_list' %}" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-              <a href="#" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tasks</a>
+              <a href="{% url 'get_friends_task' %}" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tasks</a>
               <a href="{% url 'friends:list_friends' %}" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Friends</a>
             </div>
           </div>
@@ -78,7 +78,7 @@
     <div class="md:hidden" id="mobile-menu">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
         <a href="#" class="bg-blue-600 text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
-        <a href="#" class="text-gray-300 hover:bg-blue-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Tasks</a>
+        <a href="" class="text-gray-300 hover:bg-blue-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Tasks</a>
         <a href="#" class="text-gray-300 hover:bg-blue-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Create Task</a>
         <a href="#" class="text-gray-300 hover:bg-blue-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Logout</a>
       </div>

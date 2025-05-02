@@ -6,6 +6,11 @@
     <title>Create Task</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+
+
+
+
+
       const mobileMenuButton = document.getElementById('mobile-menu-button');
       const mobileMenu = document.getElementById('mobile-menu');
       const menuIcon = mobileMenuButton.querySelector('svg:nth-of-type(1)');
@@ -36,7 +41,7 @@
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
               <a href="#" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-              <a href="#" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tasks</a>
+              <a href="{% url 'get_friends_task' %}" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tasks</a>
               <a href="{% url 'friends:list_friends' %}" class="text-gray-300 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Friends</a>
             </div>
           </div>
@@ -90,5 +95,21 @@
     {% block content %}
 
     {% endblock %}
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          var input = document.getElementById("profile_picture");
+          
+          input.addEventListener("change", function(event) {
+              var reader = new FileReader();
+              reader.onload = function(){
+                  var imgElement = document.getElementById("image_preview");
+                  imgElement.src = reader.result;
+                  imgElement.style.display = "block"; 
+              };
+              reader.readAsDataURL(event.target.files[0]);
+          });
+      });
+      </script>
+      
 </body>
 </html>
